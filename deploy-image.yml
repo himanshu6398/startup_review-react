@@ -8,9 +8,13 @@
         source: pull
     - name: Running the container
       docker_container:
-        name: startupreview-spring
+        name: startupreview-react
         image: rajatkumariiitb/startup_review-react:latest
         state: started
         restart: yes
         ports:
           - "3000:3000"
+
+#        volumes:
+#          - /data/db:/var/lib/postgresql
+#          - /data/log:/var/log/postgresql
