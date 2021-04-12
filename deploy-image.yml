@@ -15,7 +15,7 @@
         ports:
           - "3000:3000"
         networks:
-          - name: bridge
+          - name: host
 
 #        volumes:
 #          - /data/db:/var/lib/postgresql
