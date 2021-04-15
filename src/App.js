@@ -1,62 +1,38 @@
-import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import NavBar from "./components/NavBar";
+import About from "./pages/about";
+import Sign_in from "./pages/sign_in.js";
+import Sign_up from "./pages/sign_up.js";
+import {Col, Container, Row} from "react-bootstrap";
+import React from "react";
+import Add_startup from "./pages/add_startup";
 
-class App extends Component {
+console.log(localStorage.getItem("role"));
 
-  state = {};
-
-  componentDidMount() {
-    setInterval(this.hello, 250);
-  }
-
-  hello = () => {
-    fetch('/api/hello')
-        .then(response => response.text())
-        .then(message => {
-          this.setState({message: message});
-        });
-  };
-
-  render() {
-    return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo"/>
-            <h1 className="App-title">{this.state.message}</h1>
-          </header>
-
-        </div>
-    );
-  }
+function App() {
+  return (
+      <div>
+        <Router>
+          <NavBar />
+          <Container>
+            <Row>
+              <Col lg={12} className="margin-top">
+                <Switch>
+                  <Route path='/about' component={About} />
+                  <Route path='/sign_in' component={Sign_in} />
+                  <Route path='/sign_up' component={Sign_up} />
+                  <Route path='/add_startup' component={Add_startup}/>
+                  {/*{localStorage.getItem("role") === "ROLE_ADMIN" ?*/}
+                  {/*    <Route path='/add_startup' component={Sign_up}/> : null*/}
+                  {/*}*/}
+                </Switch>
+              </Col>
+            </Row>
+          </Container>
+        </Router>
+      </div>
+  );
 }
 
 export default App;
-
-// import logo from './logo.svg';
-// import './App.css';
-//
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-//
-// export default App;
-// "proxy": "http://startupreview-spring:8081/",
-// "proxy": "http://localhost:8081/",
