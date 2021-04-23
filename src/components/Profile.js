@@ -1,43 +1,47 @@
 import React, {useEffect, useState} from "react";
 import AuthService from "../services/auth.service";
+import {Button, Row,Col, Container} from "reactstrap";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Redirect } from 'react-router';
+import AdminLeftSideMenu from "./admin/AdminLeftSideMenu";
+import UserLeftSideMenu from "./UserLeftSideMenu";
+import UserDetails from "./UserDetails";
+import AddStartup from "./startup/AddStartup";
 
 const Profile = (props) => {
     const currentUser = AuthService.getCurrentUser();
 
     return (
-
         <div className="container">
-            {currentUser ? (
-                <div>
-                    <header className="jumbotron">
-                        <h3>
-                            <strong>{currentUser.username}</strong> Profile
-                        </h3>
-                    </header>
-                    <p>
-                        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-                        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-                    </p>
-                    <p>
-                        <strong>Id:</strong> {currentUser.id}
-                    </p>
-                    <p>
-                        <strong>Email:</strong> {currentUser.email}
-                    </p>
-                    <p>
-                        <strong>Name:</strong> {currentUser.name}
-                    </p>
-                    <strong>Authorities:</strong>
-                    <ul>
-                        {currentUser.roles &&
-                        currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-                    </ul>
-                </div>
+        { currentUser ? (
+        <div>
+            <Router>
+
+                <Container>
+                    <Router>
+                    <Row>
+                        <Col md={4}>
+                            {currentUser.roles.includes("ROLE_ADMIN") ? (
+                                <AdminLeftSideMenu />
+                            ) : (
+                                <UserLeftSideMenu />
+                            )}
+                        </Col>
+                        <Col md={8}>
+                            <Switch>
+                            <Route path="/" component={Profile} exact />
+                            <Route path={"/profile/user-details"} component={UserDetails} />
+                            <Route path={"/profile/add-startup"} component={AddStartup} />
+                            </Switch>
+                        </Col>
+                    </Row>
+                    </Router>
+                </Container>
+            </Router>
+        </div>
             ) : (
                 <Redirect to='/login'  />
-
-            )}
+                    )}
         </div>
     );
 };
