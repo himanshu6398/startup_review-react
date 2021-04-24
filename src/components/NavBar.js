@@ -45,15 +45,16 @@ const NavBar = () => {
                                 Home
                             </Link>
                         </li>
-                    </div>
-
-                    <div className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <Link to={"/about"} className="nav-link">
                                 About
                             </Link>
                         </li>
                     </div>
+
+
+
+
                     {/*<NavLink to='/sign_up'>Sign Up</NavLink>*/}
                     {/*<NavLink to='/sign_in'>Sign In</NavLink>*/}
                     {/*{localStorage.getItem("role") === "ROLE_ADMIN" ?*/}

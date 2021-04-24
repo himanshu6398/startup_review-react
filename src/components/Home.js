@@ -14,9 +14,9 @@ const Home = () => {
 
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(1);
 
-    const pageSizes = [10, 20, 30];
+    const pageSizes = [1, 2, 3];
 
     useEffect(() => {
         UserService.getPublicContent().then(
@@ -89,7 +89,7 @@ const Home = () => {
                 <h3>{content}</h3>
             </header>
 
-            <div className="col-md-8">
+            <div className="col-md-12">
                 <div className="input-group mb-3">
                     <input
                         type="text"
@@ -135,7 +135,7 @@ const Home = () => {
 
                 {startups &&
                 startups.map((item) => (
-                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div key={item.id} style={{display: 'flex', flexDirection: 'row'}}>
                         <Startuptile key={item.id} startup={item} />
                     </div>
                 ))}

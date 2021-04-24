@@ -9,8 +9,11 @@ const addStartup = (startup) => {
 const getStartups = (params)=>{
     return axios.get(API_URL,{params});
 };
-
+const get = id => {
+    return axios.get(API_URL+id);
+};
 export default {
     addStartup,
     getStartups,
+    get,
 };
