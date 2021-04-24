@@ -12,6 +12,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
+import StartupDetails from "./components/startup/StartupDetails";
 
 
 
@@ -24,6 +25,7 @@ function App() {
           <Container>
             <Row>
               <Col lg={12} className="margin-top">
+
                 <Switch>
                   <Route path='/about' component={About} />
                   <Route path='/sign_in' component={Sign_in} />
@@ -34,8 +36,12 @@ function App() {
 
                   <Route path='/login' component={Login}/>
                   <Route path='/register' component={Register}/>
-                  <Route exact path="/profile" component={Profile} />
-                  <Route exact path="/home" component={Home} />
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/startups/:id" component={StartupDetails} />
+                  <Route path="/" component={Home} />
+
+
+                  {/*<Route path={"/profile/add-startup"} component={AddStartup} exact/>*/}
 
                   {/*{localStorage.getItem("role") === "ROLE_ADMIN" ?*/}
                   {/*    <Route path='/add_startup' component={Sign_up}/> : null*/}

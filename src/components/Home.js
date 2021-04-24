@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
 import StartupService from "../services/startup.service";
 import Pagination from "@material-ui/lab/Pagination";
+import Startuptile from "./startup/Startuptile";
+import {Row} from "reactstrap";
 
 const Home = () => {
 
@@ -12,9 +14,9 @@ const Home = () => {
 
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
-    const [pageSize, setPageSize] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
 
-    const pageSizes = [1, 2, 3];
+    const pageSizes = [10, 20, 30];
 
     useEffect(() => {
         UserService.getPublicContent().then(
@@ -129,20 +131,16 @@ const Home = () => {
                     onChange={handlePageChange}
                 />
             </div>
-            <ul className="list-group">
+            <Row className={'show-grid'}>
+
                 {startups &&
                 startups.map((item) => (
-                    <li
-                        className={
-                            "list-group-item "
-                        }
-
-                        key={item.id}
-                    >
-                        {item.name}
-                    </li>
+                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                        <Startuptile key={item.id} startup={item} />
+                    </div>
                 ))}
-            </ul>
+
+            </Row>
         </div>
     );
 };

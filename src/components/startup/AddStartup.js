@@ -2,12 +2,14 @@ import React, {Fragment, useEffect,useState} from "react";
 import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import AuthService from "../../services/auth.service";
 import StartupService from "../../services/startup.service";
+import {TextField} from "@material-ui/core";
 
 const AddStartup=()=>{
 
     const currentUser = AuthService.getCurrentUser();
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+    const [dateRequired,setDateRequired] =useState(false);
 
     useEffect( ()=>{
         document.title="Add Course";
@@ -19,24 +21,28 @@ const AddStartup=()=>{
         console.log(startup);
         setMessage("");
         setSuccessful(false);
+        if(startup.launchDate == undefined){
+            setDateRequired(true)
+        } else {
+            StartupService.addStartup(startup).then(
+                (response) => {
+                    setMessage(response.data.message);
+                    setSuccessful(true);
+                },
+                (error) => {
+                    const resMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
 
-        StartupService.addStartup(startup).then(
-            (response) => {
-                setMessage(response.data.message);
-                setSuccessful(true);
-            },
-            (error) => {
-                const resMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
+                    setMessage(resMessage);
+                    setSuccessful(false);
+                }
+            );
+        }
 
-                setMessage(resMessage);
-                setSuccessful(false);
-            }
-        );
 
         e.preventDefault();
     };
@@ -64,8 +70,32 @@ const AddStartup=()=>{
                                required
                                onChange={(e)=>{
                                    setStartup({...startup,description:e.target.value});
+                                   console.log(startup);
                                }}
                         />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for={"launchDate"}>Launch Date</Label>
+                        <br/>
+                        <TextField
+                            id={"launchDate"}
+                            type="date"
+                            defaultValue="2017-05-24"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+
+                            onChange={(e)=>{
+                                setStartup({...startup,launchDate:e.target.value});
+                                setDateRequired(false);
+                            }}
+                        />
+                        {(dateRequired)&&
+                         <div className="alert alert-danger" role="alert">
+                             This field is required!
+                         </div>
+                        }
+
                     </FormGroup>
                     <Container className={"text-center"}>
                         <Button type="submit" color={"success"}>Add Startup</Button>
