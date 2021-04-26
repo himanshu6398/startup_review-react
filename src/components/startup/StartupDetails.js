@@ -7,6 +7,7 @@ import AuthService from "../../services/auth.service";
 import ReactStars from "react-rating-stars-component";
 import AddReview from "./AddReview";
 import UpdateReview from "./UpdateReview";
+import Reviews from "./Reviews";
 const StartupDetails = props =>{
 
     const user = AuthService.getCurrentUser();
@@ -109,6 +110,7 @@ const StartupDetails = props =>{
 
             <Card  className="card-style">
                 <h4>Reviews</h4>
+                <Reviews startupid={props.match.params.id}></Reviews>
             </Card>
             </div>
             <div>

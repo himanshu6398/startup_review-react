@@ -19,10 +19,14 @@ const checkUserWrittenReview = (params)=>{
 const getSpecificReview = (params)=>{
     return axios.get(API_URL+"getReviewFromStartupAndUser",{params});
 };
+const getStartupsReviews= (params)=>{
+    return axios.get(API_URL+"get",{params});
+}
 export default {
     addReview,
     getStartupRating,
     checkUserWrittenReview,
     getSpecificReview,
     updateReview,
+    getStartupsReviews,
 };
