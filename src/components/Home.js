@@ -5,6 +5,7 @@ import StartupService from "../services/startup.service";
 import Pagination from "@material-ui/lab/Pagination";
 import Startuptile from "./startup/Startuptile";
 import {Row} from "reactstrap";
+import {withRouter} from 'react-router-dom';
 
 const Home = () => {
 
@@ -32,7 +33,7 @@ const Home = () => {
                 setContent(_content);
             }
         );
-        retrieveStartups();
+        // retrieveStartups();
 
     }, []);
     const retrieveStartups = () => {

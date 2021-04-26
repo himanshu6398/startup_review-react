@@ -69,7 +69,9 @@ const Login = (props) => {
     };
 
     return (
+
         <div className="col-md-12">
+
             {currentUser ? (
                     <Redirect to='/profile'  />
                 ): (

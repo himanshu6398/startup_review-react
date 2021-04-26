@@ -9,7 +9,7 @@ const AddStartup=()=>{
     const currentUser = AuthService.getCurrentUser();
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
-
+    const [dateRequired,setDateRequired] =useState(false);
 
     useEffect( ()=>{
         document.title="Add Course";
@@ -21,7 +21,9 @@ const AddStartup=()=>{
         console.log(startup);
         setMessage("");
         setSuccessful(false);
-
+        if(startup.launchDate == undefined){
+            setDateRequired(true);
+        } else {
             StartupService.addStartup(startup).then(
                 (response) => {
                     setMessage(response.data.message);
@@ -39,7 +41,7 @@ const AddStartup=()=>{
                     setSuccessful(false);
                 }
             );
-
+        }
 
 
         e.preventDefault();
@@ -85,10 +87,14 @@ const AddStartup=()=>{
                             required
                             onChange={(e)=>{
                                 setStartup({...startup,launchDate:e.target.value});
-
+                                setDateRequired(false);
                             }}
                         />
-
+                        {(dateRequired)&&
+                         <div className="alert alert-danger" role="alert">
+                             This field is required!
+                         </div>
+                        }
 
                     </FormGroup>
                     <Container className={"text-center"}>

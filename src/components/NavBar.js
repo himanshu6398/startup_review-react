@@ -12,7 +12,7 @@ export const NavLink = styled(Link)`
   }
 `;
 
-const NavBar = () => {
+const NavBar = (props) => {
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -69,7 +69,7 @@ const NavBar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="/login" className="nav-link" onClick={logOut}>
+                                <a href="/" className="nav-link" onClick={logOut}>
                                     LogOut
                                 </a>
                             </li>
@@ -77,7 +77,7 @@ const NavBar = () => {
                     ) : (
                         <div className="navbar-nav ml-auto">
                             <li className="nav-item">
-                                <Link to={"/login"} className="nav-link">
+                                <Link to={{pathname:"/login",state:window.location.pathname}} className="nav-link" >
                                     Login
                                 </Link>
                             </li>
