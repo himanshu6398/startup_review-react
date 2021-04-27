@@ -7,6 +7,7 @@ import AdminLeftSideMenu from "./admin/AdminLeftSideMenu";
 import UserLeftSideMenu from "./UserLeftSideMenu";
 import UserDetails from "./UserDetails";
 import AddStartup from "./startup/AddStartup";
+import ShowStartups from "./startup/ShowStartups";
 
 const Profile = (props) => {
     const currentUser = AuthService.getCurrentUser();
@@ -20,18 +21,19 @@ const Profile = (props) => {
                 <Container>
                     <Router>
                     <Row>
-                        <Col md={4}>
+                        <Col md={3}>
                             {currentUser.roles.includes("ROLE_ADMIN") ? (
                                 <AdminLeftSideMenu />
                             ) : (
                                 <UserLeftSideMenu />
                             )}
                         </Col>
-                        <Col md={8}>
+                        <Col md={9}>
                             <Switch>
                             <Route path="/" component={Profile} exact />
                             <Route path={"/profile/user-details"} component={UserDetails} />
                             <Route path={"/profile/add-startup"} component={AddStartup} />
+                            <Route path={"/profile/show-startups"} component={ShowStartups} />
                             </Switch>
                         </Col>
                     </Row>

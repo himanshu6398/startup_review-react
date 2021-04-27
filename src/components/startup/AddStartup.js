@@ -12,7 +12,7 @@ const AddStartup=()=>{
     const [dateRequired,setDateRequired] =useState(false);
 
     useEffect( ()=>{
-        document.title="Add Course";
+        document.title="Add Startup";
     },[])
     const [startup,setStartup]=useState({});
 
