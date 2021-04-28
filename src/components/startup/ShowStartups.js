@@ -40,9 +40,9 @@ const ShowStartups =()=> {
         window.location.reload();
     }
 
-        return (
-            <div>
-                <Row>
+    return (
+        <div>
+            <Row>
                 {
                     startups.map((item) => (
                         <div key={item.id} style={{display: 'flex', flexDirection: 'row'}}>
@@ -65,9 +65,9 @@ const ShowStartups =()=> {
                         </div>
                     ))
                 }
-                </Row>
-            </div>
-        );
+            </Row>
+        </div>
+    );
 
 };
 

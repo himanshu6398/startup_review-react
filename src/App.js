@@ -13,6 +13,7 @@ import Register from "./components/Register";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
 import StartupDetails from "./components/startup/StartupDetails";
+import UpdateStartup from "./components/startup/UpdateStartup";
 
 
 
@@ -38,8 +39,8 @@ function App() {
                   <Route path='/register' component={Register}/>
                   <Route path="/profile" component={Profile} />
                   <Route path="/startups/:id" component={StartupDetails} />
-                  <Route path="/" component={Home} />
-
+                  <Route exact path="/" component={Home} />
+                  <Route path ="/updateStartup" component={UpdateStartup} />
 
                   {/*<Route path={"/profile/add-startup"} component={AddStartup} exact/>*/}
 

@@ -23,14 +23,14 @@ const Profile = (props) => {
                 <Container>
                     <Router>
                     <Row>
-                        <Col md={4}>
+                        <Col md={3}>
                             {currentUser.roles.includes("ROLE_ADMIN") ? (
                                 <AdminLeftSideMenu />
                             ) : (
                                 <UserLeftSideMenu />
                             )}
                         </Col>
-                        <Col md={8}>
+                        <Col md={9}>
                             <Switch>
                             <Route path="/" component={Profile} exact />
                             <Route path={"/profile/user-details"} component={UserDetails} />
@@ -38,6 +38,7 @@ const Profile = (props) => {
                             <Route path="/profile/showStartups" component={ShowStartups} />
                             <Route path={"/profile/updateStartup"} component={UpdateStartup} />
                             <Route path={"/profile/deleteStartup"} component={DeleteStartup} />
+
                             </Switch>
                         </Col>
                     </Row>

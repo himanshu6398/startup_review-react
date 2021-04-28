@@ -37,17 +37,17 @@ const DeleteStartup = () => {
         e.preventDefault();
     }
 
-        return (
-            <div>
-                <form onSubmit={deleteHandler}>
-                    <h3>
-                        Are you sure you want to delete this startup ?
-                        <h1 className="text-danger text-capitalize">{startupDetails.name}</h1>
-                    </h3>
-                    <Button type={"submit"} color={"danger"}>Yes</Button>
-                </form>
-            </div>
-        );
+    return (
+        <div>
+            <form onSubmit={deleteHandler}>
+                <h3>
+                    Are you sure you want to delete this startup ?
+                    <h1 className="text-danger text-capitalize">{startupDetails.name}</h1>
+                </h3>
+                <Button type={"submit"} color={"danger"}>Yes</Button>
+            </form>
+        </div>
+    );
 
 };
 
