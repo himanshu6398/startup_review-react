@@ -7,6 +7,9 @@ import AdminLeftSideMenu from "./admin/AdminLeftSideMenu";
 import UserLeftSideMenu from "./UserLeftSideMenu";
 import UserDetails from "./UserDetails";
 import AddStartup from "./startup/AddStartup";
+import ShowStartups from "./startup/ShowStartups";
+import UpdateStartup from "./startup/UpdateStartup";
+import DeleteStartup from "./startup/DeleteStartup";
 
 const Profile = (props) => {
     const currentUser = AuthService.getCurrentUser();
@@ -32,6 +35,9 @@ const Profile = (props) => {
                             <Route path="/" component={Profile} exact />
                             <Route path={"/profile/user-details"} component={UserDetails} />
                             <Route path={"/profile/add-startup"} component={AddStartup} />
+                            <Route path="/profile/showStartups" component={ShowStartups} />
+                            <Route path={"/profile/updateStartup"} component={UpdateStartup} />
+                            <Route path={"/profile/deleteStartup"} component={DeleteStartup} />
                             </Switch>
                         </Col>
                     </Row>
