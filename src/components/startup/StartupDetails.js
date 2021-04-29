@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Button, Container, CardImg} from "reactstrap";
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Button, Container, CardImg, Row} from "reactstrap";
 import StartupService from "../../services/startup.service";
 import ReviewService from "../../services/review.service";
 import AuthService from "../../services/auth.service";
@@ -8,17 +8,19 @@ import ReactStars from "react-rating-stars-component";
 import AddReview from "./AddReview";
 import UpdateReview from "./UpdateReview";
 import Reviews from "./Reviews";
+import {Avatar, Chip} from "@material-ui/core";
 const StartupDetails = props =>{
 
     const user = AuthService.getCurrentUser();
     const [showAddReviewForm,SetShowAddReviewForm] = useState(false);
     const [showUpdateReviewForm,SetShowUpdateReviewForm] = useState(false);
-
+    const [tags,setTags]= useState([]);
     const [startupRating,setStartupRating] = useState(0);
     const [reviewWritten,setReviewWritten] = useState();
     const initialStartupState = {
         id: null,
         name: "",
+        tags:"",
         description: "",
         launchDate:"",
         dateTime:""
@@ -30,6 +32,13 @@ const StartupDetails = props =>{
             .then(response => {
                 setCurrentStartup(response.data);
                 console.log(response.data);
+                console.log(response.data.tags);
+                var tags = response.data.tags;
+                tags = tags.split(",")
+                setTags(tags);
+                // setTags(tags.split(','));
+                // console.log(tags.split(','));
+
             })
             .catch(e => {
                 console.log(e);
@@ -74,6 +83,12 @@ const StartupDetails = props =>{
                 <h3> {currentStartup.name.toUpperCase()} </h3>
                 <CardSubtitle className="mb-2 ">
                     <div>Launch year - {currentStartup.launchDate.substring(0,4)} </div>
+                    <div>
+                    {tags &&
+                            tags.map((item) => (
+                                 <Chip size="small" avatar={<Avatar>T</Avatar>} label={item}/>
+                            ))
+                    }</div>
                     <div style={{display: 'flex', justifyContent:'flex-end'}}>
                         <p style={{margin:'13px'}}>{startupRating.avgRating}/10 {startupRating.totalRatings} reviews</p>
                         { startupRating && (

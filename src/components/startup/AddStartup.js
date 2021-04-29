@@ -3,6 +3,14 @@ import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import AuthService from "../../services/auth.service";
 import StartupService from "../../services/startup.service";
 import {TextField} from "@material-ui/core";
+import TagsInput from "../util/TagsInput";
+
+const KeyCodes = {
+    comma: 188,
+    enter: 13,
+};
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const AddStartup=()=>{
 
@@ -10,11 +18,14 @@ const AddStartup=()=>{
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
     const [dateRequired,setDateRequired] =useState(false);
+    const [tags,setTags]= useState([]);
 
     useEffect( ()=>{
         document.title="Add Startup";
     },[])
     const [startup,setStartup]=useState({});
+
+
 
     //form handler function
     const handleForm = (e) =>{
@@ -46,6 +57,7 @@ const AddStartup=()=>{
 
         e.preventDefault();
     };
+
     return(
 
         <div>
@@ -64,6 +76,20 @@ const AddStartup=()=>{
                         />
 
                     </FormGroup>
+
+                    <FormGroup>
+                        <Label for={"tags"}>Startup Title(Enter tags separated by comma)</Label>
+                        <Input type={"text"} placeholder={"Enter Here"}  id={"tags"}
+                               required
+                               onChange={(e)=>{
+                                   setStartup({...startup,tags:e.target.value});
+                               }}
+                        />
+
+                    </FormGroup>
+
+
+
                     <FormGroup>
                         <Label for={"description"}>Startup Description</Label>
                         <Input type={"textarea"} id={"description"} placeholder={"Enter the Course description"} style={{height:75}}

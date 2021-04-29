@@ -16,6 +16,7 @@
           - "3000:3000"
         networks:
           - name: app-default
+        restart_policy: always
 
 #        volumes:
 #          - /data/db:/var/lib/postgresql

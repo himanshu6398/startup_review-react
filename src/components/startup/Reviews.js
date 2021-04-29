@@ -84,7 +84,7 @@ const Reviews = (startupId) => {
                 {reviews &&
                 reviews.map((item) => (
 
-                            <Card  className="card-style" style={{margin:'2px',width: '100%'}}>
+                            <Card  key={item.id} className="card-style" style={{margin:'2px',width: '100%'}}>
                                 <h3> {item.title.toUpperCase()} </h3>
                                 <CardSubtitle className="mb-2 ">
                                     <div>Review Date - {item.dateTime.substring(0,10)} </div>

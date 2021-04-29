@@ -5,7 +5,7 @@ import {TextField} from "@material-ui/core";
 
 const UpdateStartup = () => {
 
-        const [startup, setStartup] = useState({id :null, name:"", description:"",launchDate:""});
+        const [startup, setStartup] = useState({id :null, name:"", description:"",launchDate:"",tags:""});
 
         const getStartup =() => {
                 StartupService.get(localStorage.getItem("startupId"))
@@ -46,8 +46,8 @@ const UpdateStartup = () => {
 
         return (
             <div>
-
                     <h1 className={'text-center my-3'}>Update Startup Details</h1>
+                { startup.name && (
                     <Form onSubmit={update}>
 
                         <FormGroup>
@@ -56,6 +56,16 @@ const UpdateStartup = () => {
                                    required value={startup.name}
                                    onChange={(e)=>{
                                        setStartup({...startup,name:e.target.value});
+                                   }}
+                            />
+
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for={"tags"}>Startup Title(Enter tags separated by comma)</Label>
+                            <Input type={"text"} placeholder={"Enter Here"}  id={"tags"} value={startup.tags}
+                                   required
+                                   onChange={(e)=>{
+                                       setStartup({...startup,tags:e.target.value});
                                    }}
                             />
 
@@ -135,7 +145,7 @@ const UpdateStartup = () => {
                         {/*    </div>*/}
                         {/*)}*/}
                     </Form>
-
+                )}
             </div>
         );
 

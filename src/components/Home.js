@@ -12,6 +12,7 @@ const Home = () => {
     const [content, setContent] = useState("");
     const [startups, setStartups] = useState([]);
     const [searchData, setSearchData] = useState("");
+    const [tagData, setTagData] = useState("");
 
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
@@ -37,7 +38,7 @@ const Home = () => {
 
     }, []);
     const retrieveStartups = () => {
-        const params = getRequestParams(searchData ,page, pageSize);
+        const params = getRequestParams(searchData ,page, pageSize,tagData);
         StartupService.getStartups(params)
             .then((response) => {
                 const { content, totalPages } = response.data;
@@ -56,8 +57,11 @@ const Home = () => {
     };
     useEffect(retrieveStartups, [page, pageSize]);
 
-    const getRequestParams = (searchData, page, pageSize) => {
+    const getRequestParams = (searchData, page, pageSize,tagData) => {
         let params = {};
+        if(tagData){
+            params["tagData"] = tagData;
+        }
         if (searchData) {
             params["searchData"] = searchData;
         }
@@ -82,6 +86,10 @@ const Home = () => {
         const searchData = e.target.value;
 
         setSearchData(searchData);
+    };
+    const onChangeTagData = (e) => {
+        const tagData = e.target.value;
+        setTagData(tagData);
     };
 
     return (
@@ -108,6 +116,15 @@ const Home = () => {
                             Search
                         </button>
                     </div>
+                </div>
+                <div  className="input-group mb-3">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter Tag name"
+                        value={tagData}
+                        onChange={onChangeTagData}
+                    />
                 </div>
             </div>
             <h4>Latest Startups</h4>
