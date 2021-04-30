@@ -6,8 +6,12 @@ import history from "../history"
 import UpdateStartup from "./UpdateStartup";
 import DeleteStartup from "./DeleteStartup";
 import star from "react-rating-stars-component/dist/star";
+import AuthService from "../../services/auth.service";
+import UserLeftSideMenu from "../UserLeftSideMenu";
 
 const ShowStartups =()=> {
+
+    const currentUser = AuthService.getCurrentUser();
 
     const [startups, setStartups] = useState([]);
     const [updateStartupForm, SetUpdateStartupForm] = useState(false);
@@ -16,12 +20,22 @@ const ShowStartups =()=> {
     const [id, setId] = useState();
 
     useEffect( () => {
-        StartupService.displayStartups().then(
-            response => {
-                setStartups(response.data);
-                // console.log(response.data);
-            }
-        )
+        if(currentUser.roles.includes("ROLE_ADMIN")){
+            StartupService.displayStartups().then(
+                response => {
+                    setStartups(response.data);
+                    // console.log(response.data);
+                }
+            )
+        } else {
+            StartupService.getStartupByUser().then(
+                response => {
+                    setStartups(response.data);
+
+                }
+            )
+        }
+
     },[])
 
     const UpdateForm =startupId => {
@@ -43,8 +57,8 @@ const ShowStartups =()=> {
     return (
         <div>
             <Row>
-                {
-                    startups.map((item) => (
+                {   (startups.length > 0) ? (
+                       startups.map((item) => (
                         <div key={item.id} style={{display: 'flex', flexDirection: 'row'}}>
                             {/*<EditStartupTile key={item.id} startup={item} />*/}
 
@@ -64,6 +78,14 @@ const ShowStartups =()=> {
                             </div>
                         </div>
                     ))
+                ) : (
+                    <div className={"container"}>
+                        <div>
+                            You have not added any startups
+                        </div>
+
+                    </div>
+                )
                 }
             </Row>
         </div>

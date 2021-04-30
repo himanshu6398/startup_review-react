@@ -10,7 +10,10 @@ const getStartups = (params)=>{
     return axios.get(API_URL,{params});
 };
 const displayStartups = () => {
-    return axios.get(API_URL + "all");
+    return axios.get(API_URL + "all", {headers: authHeader()});
+};
+const getStartupByUser = () => {
+    return axios.get(API_URL + "getStartupByUser" , {headers: authHeader()});
 };
 const get = id => {
     return axios.get(API_URL+id);
@@ -31,4 +34,5 @@ export default {
     updateStartup,
     displayStartups,
     deleteStartup,
+    getStartupByUser,
 };
