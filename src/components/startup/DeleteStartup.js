@@ -1,6 +1,8 @@
 import React, {Component, useEffect, useState} from 'react';
 import StartupService from "../../services/startup.service";
-import {Button} from "reactstrap";
+import {Button, Card, CardBody} from "reactstrap";
+import {Link} from "react-router-dom";
+
 
 
 const DeleteStartup = () => {
@@ -39,13 +41,17 @@ const DeleteStartup = () => {
 
     return (
         <div>
+            <Card  className="card-style" style={{ width: '18rem' , height:'18rem',flex:1, margin:'1.5rem'}}>
             <form onSubmit={deleteHandler}>
-                <h3>
+                    <h3>
                     Are you sure you want to delete this startup ?
-                    <h1 className="text-danger text-capitalize">{startupDetails.name}</h1>
+                    <h3 className="text-danger text-capitalize">{startupDetails.name}</h3>
                 </h3>
-                <Button type={"submit"} color={"danger"}>Yes</Button>
+                <Button type={"submit"} color={"danger"} style={{margin:"5px"}}>Yes</Button>
+                <Link to="/profile/showStartups" className="btn btn-primary">Back</Link>
             </form>
+
+        </Card>
         </div>
     );
 
