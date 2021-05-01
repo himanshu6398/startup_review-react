@@ -1,7 +1,7 @@
 
 import React from "react";
 
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Button, Container, CardImg} from "reactstrap";
+import {Card, CardBody, CardTitle, CardText, Button} from "reactstrap";
 import {Link} from "react-router-dom";
 const Startuptile=({startup}) =>{
 

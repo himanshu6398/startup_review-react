@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Button, Container, CardImg, Row} from "reactstrap";
+import {Card, CardSubtitle, Button} from "reactstrap";
 import StartupService from "../../services/startup.service";
 import ReviewService from "../../services/review.service";
 import AuthService from "../../services/auth.service";
@@ -86,7 +86,7 @@ const StartupDetails = props =>{
                     <div>
                     {tags &&
                             tags.map((item) => (
-                                 <Chip size="small" avatar={<Avatar>T</Avatar>} label={item}/>
+                                 <Chip key={item} size="small" avatar={<Avatar>T</Avatar>} label={item}/>
                             ))
                     }</div>
                     <div style={{display: 'flex', justifyContent:'flex-end'}}>

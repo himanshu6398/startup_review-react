@@ -32,7 +32,7 @@ const AddStartup=()=>{
         console.log(startup);
         setMessage("");
         setSuccessful(false);
-        if(startup.launchDate == undefined){
+        if(startup.launchDate === undefined){
             setDateRequired(true);
         } else {
             StartupService.addStartup(startup).then(

@@ -12,8 +12,8 @@ const Reviews = (startupId) => {
     const [reviews, setReviews] = useState([]);
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
-    const [pageSize, setPageSize] = useState(2);
-    const pageSizes = [1, 2, 3];
+    const [pageSize, setPageSize] = useState(10);
+    const pageSizes = [10, 20, 30];
 
     const retrieveReviews = () => {
         const params = getRequestParams( page, pageSize);

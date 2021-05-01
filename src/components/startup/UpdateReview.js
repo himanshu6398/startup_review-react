@@ -3,7 +3,7 @@ import React, {Fragment, useEffect, useState} from 'react'
 import {Button, Card, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import'../../assets/css/popup.css'
 
-import AuthService from "../../services/auth.service";
+
 import ReactStars from "react-rating-stars-component";
 import ReviewService from "../../services/review.service";
 const UpdateReview=({startup,trigger,setTrigger,user}) =>{
@@ -31,7 +31,7 @@ const UpdateReview=({startup,trigger,setTrigger,user}) =>{
 
     }
     useEffect(() => {
-        if(trigger == true){
+        if(trigger === true){
             getReview();
         }
 

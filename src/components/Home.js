@@ -5,7 +5,7 @@ import StartupService from "../services/startup.service";
 import Pagination from "@material-ui/lab/Pagination";
 import Startuptile from "./startup/Startuptile";
 import {Row} from "reactstrap";
-import {withRouter} from 'react-router-dom';
+
 
 const Home = () => {
 
@@ -16,9 +16,9 @@ const Home = () => {
 
     const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
-    const [pageSize, setPageSize] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
 
-    const pageSizes = [1, 2, 3];
+    const pageSizes = [10, 20, 30];
 
     useEffect(() => {
         UserService.getPublicContent().then(
@@ -94,12 +94,18 @@ const Home = () => {
 
     return (
         <div className="container">
-            <header className="jumbotron">
-                <h3>{content}</h3>
-            </header>
+            <div
+                className="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white banner"
+            >
+                <h1 className="mb-3 h2">{content}</h1>
 
-            <div className="col-md-12">
-                <div className="input-group mb-3">
+            </div>
+            {/*<header className="jumbotron">*/}
+            {/*    <h3>{content}</h3>*/}
+            {/*</header>*/}
+
+            <div className="row">
+                <div className="col-sm-4">
                     <input
                         type="text"
                         className="form-control"
@@ -107,17 +113,8 @@ const Home = () => {
                         value={searchData}
                         onChange={onChangeSearchData}
                     />
-                    <div className="input-group-append">
-                        <button
-                            className="btn btn-outline-secondary"
-                            type="button"
-                            onClick={retrieveStartups}
-                        >
-                            Search
-                        </button>
-                    </div>
                 </div>
-                <div  className="input-group mb-3">
+                <div className="col-sm-4">
                     <input
                         type="text"
                         className="form-control"
@@ -126,7 +123,17 @@ const Home = () => {
                         onChange={onChangeTagData}
                     />
                 </div>
+                <div className="col-sm-4">
+                    <button
+                        className="btn btn-outline-secondary"
+                        type="button"
+                        onClick={retrieveStartups}
+                    >
+                        Search
+                    </button>
+                </div>
             </div>
+
             <h4>Latest Startups</h4>
             <div className="mt-3">
                 {"Items per Page: "}

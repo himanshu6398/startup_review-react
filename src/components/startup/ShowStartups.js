@@ -1,13 +1,11 @@
 import React, {Component, useEffect, useState} from 'react';
 import {Button, Card, CardBody, CardText, CardTitle, Row} from "reactstrap";
 import StartupService from "../../services/startup.service";
-// import { useHistory } from 'react-router-dom';
+
 import history from "../history"
-import UpdateStartup from "./UpdateStartup";
-import DeleteStartup from "./DeleteStartup";
-import star from "react-rating-stars-component/dist/star";
+
 import AuthService from "../../services/auth.service";
-import UserLeftSideMenu from "../UserLeftSideMenu";
+
 
 const ShowStartups =()=> {
 
