@@ -105,7 +105,7 @@ const Comments = (rating_id) =>{
                         <Comment.Text>{item.description}</Comment.Text>
                         <Comment.Actions>
                             <Comment.Action>Reply</Comment.Action>
-                            { user.id === item.userId ? (<Comment.Action ><Button size='small' value={item.id} onClick={handleEditButtonEvent}>Edit</Button></Comment.Action>):""}
+                            {  user != undefined && user.id === item.userId ? (<Comment.Action ><Button size='small' value={item.id} onClick={handleEditButtonEvent}>Edit</Button></Comment.Action>):""}
 
                         </Comment.Actions>
                     </Comment.Content>
