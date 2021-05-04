@@ -5,9 +5,9 @@ import StartupService from "../../services/startup.service";
 import ReviewService from "../../services/review.service";
 import AuthService from "../../services/auth.service";
 import ReactStars from "react-rating-stars-component";
-import AddReview from "./AddReview";
-import UpdateReview from "./UpdateReview";
-import Reviews from "./Reviews";
+import AddReview from "../review/AddReview";
+import UpdateReview from "../review/UpdateReview";
+import Reviews from "../review/Reviews";
 import {Avatar, Chip} from "@material-ui/core";
 const StartupDetails = props =>{
 
@@ -90,7 +90,7 @@ const StartupDetails = props =>{
                             ))
                     }</div>
                     <div style={{display: 'flex', justifyContent:'flex-end'}}>
-                        <p style={{margin:'13px'}}>{startupRating.avgRating}/10 {startupRating.totalRatings} reviews</p>
+                        <p style={{margin:'5px'}}>{startupRating.avgRating}/10 {startupRating.totalRatings} reviews</p>
                         { startupRating && (
                         <ReactStars
                             id={"startupRating"}
@@ -118,9 +118,7 @@ const StartupDetails = props =>{
 
                 </div>
 
-                <div>
 
-                </div>
             </Card>
 
             <Card  className="card-style">

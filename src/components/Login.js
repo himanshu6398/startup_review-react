@@ -48,7 +48,7 @@ const Login = (props) => {
         if (checkBtn.current.context._errors.length === 0) {
             AuthService.login(username, password).then(
                 () => {
-                    props.history.push("/profile");
+                    props.history.push("/profile/user-details/");
                     window.location.reload();
                 },
                 (error) => {
@@ -73,7 +73,7 @@ const Login = (props) => {
         <div className="col-md-12">
 
             {currentUser ? (
-                    <Redirect to='/profile'  />
+                    <Redirect to='/profile/user-details/'  />
                 ): (
              <div className="card card-container">
                 <img

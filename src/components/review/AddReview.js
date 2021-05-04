@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react'
-import Startuptile from "./Startuptile";
+import Startuptile from "../startup/Startuptile";
 import'../../assets/css/popup.css'
 import {Button, Card, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import {TextField} from "@material-ui/core";
@@ -75,7 +75,9 @@ const AddReview=({startup,trigger,setTrigger,reviewWrittenTrigger}) =>{
                                             />
 
                                         </FormGroup>
-                                        <FormGroup>
+
+                                        <FormGroup >
+
                                                 <ReactStars
                                                     count={10}
                                                     onChange={(e)=>{
@@ -83,7 +85,7 @@ const AddReview=({startup,trigger,setTrigger,reviewWrittenTrigger}) =>{
                                                         setReview({...review,rating:e});
 
                                                     }}
-                                                    size={50}
+                                                    size={30}
 
                                                     isHalf={true}
                                                     emptyIcon={<i className="far fa-star"></i>}

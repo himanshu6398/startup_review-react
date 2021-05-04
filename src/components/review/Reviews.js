@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import Home from "../Home";
 import ReviewService from "../../services/review.service";
 import Pagination from "@material-ui/lab/Pagination";
-import Startuptile from "./Startuptile";
+import Startuptile from "../startup/Startuptile";
 import {Button, Card, CardSubtitle, Row} from "reactstrap";
 import ReactStars from "react-rating-stars-component";
+import {Link} from "react-router-dom";
+import ReactTimeAgo from "react-time-ago";
 
 
 const Reviews = (startupId) => {
@@ -18,8 +20,9 @@ const Reviews = (startupId) => {
     const retrieveReviews = () => {
         const params = getRequestParams( page, pageSize);
         console.log(startupId);
-        ReviewService.getStartupsReviews(params)
+        ReviewService.getStartupsReviewsFromStartupID(params)
             .then((response) => {
+                console.log(response.data);
                 const { content, totalPages } = response.data;
 
                 setReviews(content);
@@ -55,6 +58,7 @@ const Reviews = (startupId) => {
         setPageSize(event.target.value);
         setPage(1);
     };
+
     return (
         <div className="container">
             <div className="mt-3">
@@ -87,10 +91,9 @@ const Reviews = (startupId) => {
                             <Card  key={item.id} className="card-style" style={{margin:'2px',width: '100%'}}>
                                 <h3> {item.title.toUpperCase()} </h3>
                                 <CardSubtitle className="mb-2 ">
-                                    <div>Review Date - {item.dateTime.substring(0,10)} </div>
+                                    <div>Review Date -  <ReactTimeAgo date={item.dateTime} locale="en-US"/> </div>
                                     <div style={{display: 'flex', justifyContent:'flex-end'}}>
-                                        <p style={{margin:'13px'}}>{item.rating}/10</p>
-
+                                        <p style={{margin:'3px'}}>{item.rating}/10</p>
                                             <ReactStars
                                                 id={"startupRating"}
                                                 count={10}
@@ -104,7 +107,7 @@ const Reviews = (startupId) => {
                                 </CardSubtitle>
 
                                 <p> {item.description}</p>
-
+                                <Link to={"/review/" + item.id}><Button color={"warning"}>Read/Add Comments</Button></Link>
                             </Card>
 
 

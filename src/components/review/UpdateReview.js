@@ -1,7 +1,7 @@
 
-import React, {Fragment, useEffect, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react';
 import {Button, Card, Container, Form, FormGroup, Input, Label} from "reactstrap";
-import'../../assets/css/popup.css'
+import'../../assets/css/popup.css';
 
 
 import ReactStars from "react-rating-stars-component";
@@ -93,6 +93,7 @@ const UpdateReview=({startup,trigger,setTrigger,user}) =>{
                                                 />
 
                                             </FormGroup>
+
                                             <FormGroup>
                                                 <ReactStars
                                                     count={10}
@@ -101,7 +102,7 @@ const UpdateReview=({startup,trigger,setTrigger,user}) =>{
                                                         setReview({...review,rating:e});
 
                                                     }}
-                                                    size={50}
+                                                    size={30}
                                                     value={review.rating}
                                                     isHalf={true}
                                                     emptyIcon={<i className="far fa-star"></i>}
@@ -127,8 +128,6 @@ const UpdateReview=({startup,trigger,setTrigger,user}) =>{
 
                                             <Container className={"text-center"}>
                                                 <Button type="submit" color={"success"}>Update Review</Button>
-
-
                                             </Container>
                                         </div>
                                     )}

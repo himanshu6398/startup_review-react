@@ -14,11 +14,13 @@ import Profile from "./components/Profile";
 import Home from "./components/Home";
 import StartupDetails from "./components/startup/StartupDetails";
 import UpdateStartup from "./components/startup/UpdateStartup";
+import ReviewDetails from "./components/review/ReviewDetails";
 
-
+import 'semantic-ui-css/semantic.min.css'
 
 
 function App() {
+
   return (
       <div>
         <Router>
@@ -39,6 +41,8 @@ function App() {
                   <Route path='/register' component={Register}/>
                   <Route path="/profile" component={Profile} />
                   <Route path="/startups/:id" component={StartupDetails} />
+                  <Route path="/review/:id" component={ReviewDetails} />
+
                   <Route exact path="/" component={Home} />
                   <Route path ="/updateStartup" component={UpdateStartup} />
 

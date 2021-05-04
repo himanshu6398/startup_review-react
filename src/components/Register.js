@@ -100,6 +100,7 @@ const Register = (props) => {
                 (response) => {
                     setMessage(response.data.message);
                     setSuccessful(true);
+
                 },
                 (error) => {
                     const resMessage =
