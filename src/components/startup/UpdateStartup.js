@@ -70,6 +70,19 @@ const UpdateStartup = () => {
                             />
 
                         </FormGroup>
+
+                        <FormGroup>
+                            <Label for={"logoLink"}>Enter the link of the logo</Label>
+                            <Input type={"text"} placeholder={"Enter Here"}  id={"logoLink"} value={startup.logoLink}
+                                   required
+                                   onChange={(e)=>{
+                                       setStartup({...startup,logoLink:e.target.value});
+                                   }}
+                            />
+
+                        </FormGroup>
+
+
                         <FormGroup>
                             <Label for={"description"}>Startup Description</Label>
                             <Input type={"textarea"} id={"description"} placeholder={"Enter the Course description"} style={{height:75}}

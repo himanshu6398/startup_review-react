@@ -5,6 +5,7 @@ import StartupService from "../services/startup.service";
 import Pagination from "@material-ui/lab/Pagination";
 import Startuptile from "./startup/Startuptile";
 import {Row} from "reactstrap";
+import {Image} from "react-bootstrap";
 
 
 const Home = () => {
@@ -133,6 +134,7 @@ const Home = () => {
                     </button>
                 </div>
             </div>
+            {/*/!*<Image src={"https://logos-world.net/wp-content/uploads/2020/11/Swiggy-Logo.png"}></Image>*!/*/}
 
             <h4>Latest Startups</h4>
             <div className="mt-3">
@@ -156,6 +158,7 @@ const Home = () => {
                     onChange={handlePageChange}
                 />
             </div>
+
             <Row className={'show-grid'}>
 
                 {startups &&
@@ -166,6 +169,7 @@ const Home = () => {
                 ))}
 
             </Row>
+
         </div>
     );
 };

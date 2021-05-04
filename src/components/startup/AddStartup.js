@@ -3,14 +3,7 @@ import {Button, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import AuthService from "../../services/auth.service";
 import StartupService from "../../services/startup.service";
 import {TextField} from "@material-ui/core";
-import TagsInput from "../util/TagsInput";
 
-const KeyCodes = {
-    comma: 188,
-    enter: 13,
-};
-
-const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const AddStartup=()=>{
 
@@ -83,6 +76,17 @@ const AddStartup=()=>{
                                required
                                onChange={(e)=>{
                                    setStartup({...startup,tags:e.target.value});
+                               }}
+                        />
+
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label for={"logoLink"}>Enter the link of the logo</Label>
+                        <Input type={"text"} placeholder={"Enter Here"}  id={"logoLink"}
+                               required
+                               onChange={(e)=>{
+                                   setStartup({...startup,logoLink:e.target.value});
                                }}
                         />
 
