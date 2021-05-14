@@ -8,6 +8,9 @@ const addComment = (comment) => {
 const getCommentsFromStartupID= (params)=>{
     return axios.get(API_URL+"getAllComments",{params});
 }
+const getFirst3Comments=(params)=>{
+    return axios.get(API_URL+"getFirst3Comments",{params});
+}
 const getCommentFromId=(params)=>{
     return axios.get(API_URL+"getCommentFromId",{params});
 }
@@ -16,6 +19,7 @@ const updateComment = (comment) => {
 };
 export default {
     addComment,
+    getFirst3Comments,
     getCommentsFromStartupID,
     getCommentFromId,
     updateComment,

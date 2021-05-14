@@ -6,7 +6,7 @@ import {TextField} from "@material-ui/core";
 import ReviewService from "../../services/review.service";
 import ReactStars from "react-rating-stars-component/dist/react-stars";
 
-const AddReview=({startup,trigger,setTrigger,reviewWrittenTrigger}) =>{
+const AddReview=({startup,trigger,setTrigger,reviewWrittenTrigger,updateReviewPage}) =>{
 
     const sp = startup
     const [successful, setSuccessful] = useState(false);
@@ -33,6 +33,7 @@ const AddReview=({startup,trigger,setTrigger,reviewWrittenTrigger}) =>{
                     setMessage(response.data.message);
                     setSuccessful(true);
                     reviewWrittenTrigger(true);
+                    updateReviewPage();
                 },
                 (error) => {
                     const resMessage =

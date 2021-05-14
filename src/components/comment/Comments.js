@@ -128,11 +128,12 @@ const Comments = (rating_id) =>{
             )}
             {(user) ? (
                 <Form  onSubmit={handleForm} reply>
-                    <Form.TextArea id={"description"} placeholder={"Enter the comment"} required
+                    <Form.TextArea id={"description"} placeholder={"Enter the comment"} required style={{height:"auto"}} rows={3}
                                    onChange={(e)=>{
                                         setComment({...comment,description:e.target.value});
                                    }}
                     />
+
                     <Button type="submit" content='Add Comment' labelPosition='left' icon='edit' primary />
                 </Form>
 

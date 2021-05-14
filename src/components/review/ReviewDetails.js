@@ -66,6 +66,7 @@ return (
                                 value={currentRating.rating}
                                 activeColor="#ffd700"
                                 edit={false}
+                                isHalf={true}
                             />
                         )}
                     </div>

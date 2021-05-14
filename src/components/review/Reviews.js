@@ -7,6 +7,9 @@ import {Button, Card, CardSubtitle, Row} from "reactstrap";
 import ReactStars from "react-rating-stars-component";
 import {Link} from "react-router-dom";
 import ReactTimeAgo from "react-time-ago";
+import {Rating} from "semantic-ui-react";
+import Comments from "../comment/Comments";
+import TopComments from "../comment/TopComments";
 
 
 const Reviews = (startupId) => {
@@ -61,28 +64,35 @@ const Reviews = (startupId) => {
 
     return (
         <div className="container">
-            <div className="mt-3">
-                {"Items per Page: "}
-                <select onChange={handlePageSizeChange} value={pageSize}>
-                    {pageSizes.map((size) => (
-                        <option key={size} value={size}>
-                            {size}
-                        </option>
-                    ))}
-                </select>
 
-                <Pagination
-                    className="my-3"
-                    count={count}
-                    page={page}
-                    siblingCount={1}
-                    boundaryCount={1}
-                    variant="outlined"
-                    shape="rounded"
-                    onChange={handlePageChange}
-                />
+            {reviews && (reviews.length>0)?
+                 <div>
+                     <h4>Reviews</h4>
+                     <div className="mt-3">
+                         {"Items per Page: "}
+                         <select onChange={handlePageSizeChange} value={pageSize}>
+                             {pageSizes.map((size) => (
+                                 <option key={size} value={size}>
+                                     {size}
+                                 </option>
+                             ))}
+                         </select>
 
-            </div>
+                         <Pagination
+                             className="my-3"
+                             count={count}
+                             page={page}
+                             siblingCount={1}
+                             boundaryCount={1}
+                             variant="outlined"
+                             shape="rounded"
+                             onChange={handlePageChange}
+                         />
+
+                     </div>
+                 </div>
+                :"No Reviews"}
+
             <Row >
 
                 {reviews &&
@@ -97,17 +107,22 @@ const Reviews = (startupId) => {
                                             <ReactStars
                                                 id={"startupRating"}
                                                 count={10}
-                                                size={30}
+                                                size={27}
                                                 value={item.rating}
                                                 activeColor="#ffd700"
                                                 edit={false}
+                                                isHalf={true}
                                             />
+
+                                            {/*<Rating maxRating={10} defaultRating={item.rating} icon='star' size='huge' disabled/>*/}
 
                                     </div>
                                 </CardSubtitle>
 
                                 <p> {item.description}</p>
-                                <Link to={"/review/" + item.id}><Button color={"warning"}>Read/Add Comments</Button></Link>
+
+                                <TopComments rating_id={item.id} ></TopComments>
+                                <Link to={"/review/" + item.id}><Button color={"warning"}>Read All/Add Comments</Button></Link>
                             </Card>
 
 

@@ -9,6 +9,7 @@ import AddReview from "../review/AddReview";
 import UpdateReview from "../review/UpdateReview";
 import Reviews from "../review/Reviews";
 import {Avatar, Chip} from "@material-ui/core";
+import {Rating} from "semantic-ui-react";
 const StartupDetails = props =>{
 
     const user = AuthService.getCurrentUser();
@@ -17,6 +18,8 @@ const StartupDetails = props =>{
     const [tags,setTags]= useState([]);
     const [startupRating,setStartupRating] = useState(0);
     const [reviewWritten,setReviewWritten] = useState();
+
+    const [startupID,setStartupID] = useState(props.match.params.id);
     const initialStartupState = {
         id: null,
         name: "",
@@ -70,6 +73,13 @@ const StartupDetails = props =>{
         }
 
     };
+    const updateReviews = () => {
+        setTimeout(() => {  window.location.reload(false); }, 2000);
+        // window.location.reload(false);
+        // setStartupID(undefined);
+        // setStartupID(props.match.params.id);
+        // getStartupRating(props.match.params.id);
+    }
     useEffect(() => {
         getStartup(props.match.params.id);
         getStartupRating(props.match.params.id);
@@ -80,27 +90,46 @@ const StartupDetails = props =>{
         <div className="container">
             <div>
             <Card  className="card-style">
-                <h3> {currentStartup.name.toUpperCase()} </h3>
-                <CardSubtitle className="mb-2 ">
-                    <div>Launch year - {currentStartup.launchDate.substring(0,4)} </div>
-                    <div>
-                    {tags &&
+                <div className="row">
+                    <div className="col-sm">
+                        <h3> {currentStartup.name.toUpperCase()} </h3>
+                        <div>Launch year - {currentStartup.launchDate.substring(0,4)} </div>
+                        <div>
+                            {tags &&
                             tags.map((item) => (
-                                 <Chip key={item} size="small" avatar={<Avatar>T</Avatar>} label={item}/>
+                                <Chip key={item} size="small" avatar={<Avatar>T</Avatar>} label={item}/>
                             ))
-                    }</div>
+                            }</div>
+                    </div>
+                    <div className="col-sm">
+                        <img style={{width:'7rem',height:'5rem'}} src={currentStartup.logoLink} />
+                    </div>
+                    <div className="col-sm">
+
+                    </div>
+                </div>
+
+                <CardSubtitle className="mb-2 ">
+
                     <div style={{display: 'flex', justifyContent:'flex-end'}}>
                         <p style={{margin:'5px'}}>{startupRating.avgRating}/10 {startupRating.totalRatings} reviews</p>
                         { startupRating && (
                         <ReactStars
                             id={"startupRating"}
                             count={10}
-                            size={30}
+                            size={27}
                             value={startupRating.avgRating}
                             activeColor="#ffd700"
                             edit={false}
+                            isHalf={true}
                         />
                         )}
+
+                        {/*{ startupRating && (*/}
+                        {/*    <Rating maxRating={10} defaultRating={startupRating.avgRating} icon='star' size='huge' disabled/>*/}
+                        {/*)}*/}
+
+
                     </div>
                 </CardSubtitle>
 
@@ -122,15 +151,20 @@ const StartupDetails = props =>{
             </Card>
 
             <Card  className="card-style">
-                <h4>Reviews</h4>
-                <Reviews startupid={props.match.params.id}></Reviews>
+
+                {(startupID) ? (
+                    <Reviews startupid={startupID}></Reviews>
+                ):" "
+
+                }
+
             </Card>
             </div>
             <div>
                 { (user) ? (
                     <div>
-                <AddReview trigger={showAddReviewForm} startup={currentStartup} setTrigger={SetShowAddReviewForm} reviewWrittenTrigger={setReviewWritten}></AddReview>
-                <UpdateReview trigger={showUpdateReviewForm} user={user} startup={currentStartup} setTrigger ={SetShowUpdateReviewForm}></UpdateReview>
+                <AddReview trigger={showAddReviewForm} startup={currentStartup} setTrigger={SetShowAddReviewForm} reviewWrittenTrigger={setReviewWritten} updateReviewPage={updateReviews}></AddReview>
+                <UpdateReview trigger={showUpdateReviewForm} user={user} startup={currentStartup} setTrigger ={SetShowUpdateReviewForm} updateReviewPage={updateReviews}></UpdateReview>
                     </div>
                     ): ""}
             </div>

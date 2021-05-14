@@ -6,7 +6,7 @@ import'../../assets/css/popup.css';
 
 import ReactStars from "react-rating-stars-component";
 import ReviewService from "../../services/review.service";
-const UpdateReview=({startup,trigger,setTrigger,user}) =>{
+const UpdateReview=({startup,trigger,setTrigger,user,updateReviewPage}) =>{
 
 
     const [successful, setSuccessful] = useState(false);
@@ -46,6 +46,7 @@ const UpdateReview=({startup,trigger,setTrigger,user}) =>{
                 (response) => {
                     setMessage(response.data.message);
                     setSuccessful(true);
+                    updateReviewPage();
                 },
                 (error) => {
                     const resMessage =
