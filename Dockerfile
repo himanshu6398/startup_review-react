@@ -9,3 +9,4 @@ CMD ["npm","start"]
 
 
 #"proxy": "http://startupreview-spring:8081/",
+#"proxy": "http://localhost:8081/",
