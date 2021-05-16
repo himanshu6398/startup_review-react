@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const AdminLeftSideMenu=()=>{
     return (
         <ListGroup>
-            <Link className={"list-group-item list-group-item-action"} tag={"a"} to={"/profile"} >User</Link>
+            {/*<Link className={"list-group-item list-group-item-action"} tag={"a"} to={"/profile"} >User</Link>*/}
             <Link className={"list-group-item list-group-item-action"} tag={"a"} to={"/profile/user-details"} >User Details</Link>
             <Link className={"list-group-item list-group-item-action"} tag={"a"} to={"/profile/add-startup"} >Add startup</Link>
             <Link className={"list-group-item list-group-item-action"} tag={"a"} to={"/profile/showStartups"} >Show Startups</Link>

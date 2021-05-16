@@ -81,3 +81,14 @@ label {
     /*max-height: 100%;*/
     /*max-width: 100%;*/
 }
+.logo {
+  background-image: url("assets/logo/Startup Review.png");
+  height: 250px;
+  width: 250px;
+  /*background-size: cover;*/
+}
+.logo2 {
+  background-image: url("assets/logo/Startup Review.png");
+  height: 242px;
+  width: 242px;
+}

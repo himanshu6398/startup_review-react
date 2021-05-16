@@ -10,6 +10,7 @@ import AddStartup from "./startup/AddStartup";
 import ShowStartups from "./startup/ShowStartups";
 import UpdateStartup from "./startup/UpdateStartup";
 import DeleteStartup from "./startup/DeleteStartup";
+import logo from "../assets/logo/Startup Review.png";
 
 const Profile = (props) => {
     const currentUser = AuthService.getCurrentUser();
@@ -29,6 +30,9 @@ const Profile = (props) => {
                             ) : (
                                 <UserLeftSideMenu />
                             )}
+                            <div>
+                            <img className="logo2" src={logo}/>
+                            </div>
                         </Col>
                         <Col md={9}>
                             <Switch>
